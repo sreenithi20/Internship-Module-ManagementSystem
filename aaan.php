@@ -36,8 +36,8 @@ function sendApplicationEmail($recipientEmail, $recipientName, $status, $customS
         $mail->isSMTP(); // Send using SMTP
         $mail->Host       = 'smtp.gmail.com'; // Set the SMTP server to send through (e.g., smtp.gmail.com)
         $mail->SMTPAuth   = true; // Enable SMTP authentication
-        $mail->Username   = 'sreenithi20032006@gmail.com'; // SMTP username (YOUR GMAIL ADDRESS)
-        $mail->Password   = 'dtbladespjwtvfkg'; // SMTP password (YOUR GMAIL APP PASSWORD)
+        $mail->Username   = ''; // SMTP username (YOUR GMAIL ADDRESS)
+        $mail->Password   = ''; // SMTP password (YOUR GMAIL APP PASSWORD)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Enable STARTTLS on port 587
         $mail->Port       = 587; // TCP port to connect to; use 587 if you set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         // ADD THIS EXACT BLOCK HERE TO BYPASS WINDOWS SSL VERIFICATION:
