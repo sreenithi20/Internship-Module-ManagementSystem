@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Feedback Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            /* Light blue-gray background */
+            background-image: url('https://psgtech.edu/distinalumni/assets/collegepic.jpeg');
+            background-size: cover;
+        }
+        
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            box-sizing: border-box;
+            text-align: left;
+        }
+        
+        #logo {
+            position: relative;
+            top: 90px;
+            left: 360px;
+            width: 150px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #334155;
+            /* Darker gray for labels */
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #004170;
+            font-family: "Serif", Georgia;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        /* Added for phone number */
+        
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            /* Light gray border */
+            border-radius: 8px;
+            /* Rounded input fields */
+            font-size: 1rem;
+            color: #334155;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="tel"]:focus,
+        /* Added for phone number */
+        
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+            /* Indigo focus border */
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+            /* Soft focus shadow */
+        }
+        /* Conditional Formatting Styles */
+        
+        .form-group .error-border {
+            border-color: #ef4444;
+            /* Red border for errors */
+        }
+        
+        .form-group .error-message {
+            color: #ef4444;
+            /* Red text for error messages */
+            font-size: 0.875rem;
+            /* Smaller font size */
+            margin-top: 0.25rem;
+            display: none;
+            /* Hidden by default */
+        }
+        
+        .submit-button {
+            background-color: #4f46e5;
+            /* Indigo button */
+            color: white;
+            padding: 0.85rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+        }
+        
+        .submit-button:hover {
+            background-color: #4338ca;
+            /* Darker indigo on hover */
+            transform: translateY(-2px);
+            /* Slight lift on hover */
+        }
+        
+        .submit-button:active {
+            transform: translateY(0);
+        }
+        
+        .message-box {
+            background-color: #e0f2fe;
+            /* Light blue for messages */
+            color: #0c4a6e;
+            /* Dark blue text */
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid #a7d9f7;
+            display: none;
+            /* Hidden by default */
+        }
+        
+        .message-box.show {
+            display: block;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .radio-group input[type="radio"] {
+            margin-right: 0.5rem;
+            transform: scale(1.2);
+            /* Slightly larger radio buttons */
+        }
+        
+        .radio-group label {
+            font-weight: normal;
+            color: #475569;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="https://ecampus.psgtech.ac.in/studzone/assets/images/PSG%20INSTITUTION.png" id="logo" alt="PSG Institution Logo">
+    <center>
+        <h1 style="font-size: 4em; position:relative;left:50px;"><b>PSG INSTITUTIONS</b></h1>
+        <h3 style=" position:relative;right:15px; font-size: 1.6em;font-weight:bold;">CENTRAL HUMAN RESOURCE</h3>
+
+        <div class="container">
+
+
+            <form id="feedbackForm" action="store_new_details.php" method="POST" class="space-y-6" novalidate>
+                <div id="messageBox" class="message-box" role="alert">
+                    <p id="messageText"></p>
+                </div>
+                <h4 class="text-3xl  text-center text-gray-800 mb-8" style="font-family:Serif, Georgia ;font-size:27px;"><u>Internship Feedback Form</u></h4>
+
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" autocomplete="name">
+                    <p class="error-message" id="nameError">Full Name is required.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" autocomplete="email">
+                    <p class="error-message" id="emailError">Please enter a valid email address.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone_no">Phone Number (Same as the registration form):</label>
+                    <input type="tel" id="num" name="num" placeholder="e.g., 1234567890" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" autocomplete="tel" pattern="[0-9]{10}">
+                    <p class="error-message" id="phoneNoError">Please enter a valid 10-digit phone number.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Overall Internship Rating:</label>
+                    <select id="rating" name="rating" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" autocomplete="off">
+                    <option value="">Select a rating</option>
+                    <option value="1">1 - Poor</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="3">3 - Good</option>
+                    <option value="4">4 - Very Good</option>
+                    <option value="5">5 - Excellent</option>
+                </select>
+                    <p class="error-message" id="ratingError">Please select an overall rating.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="satisfaction">Overall, how satisfied were you with your internship experience?</label>
+                    <select id="satisfaction" name="satisfaction" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    <option value="">Select your satisfaction level</option>
+                    <option value="1">1 - Very Dissatisfied</option>
+                    <option value="2">2 - Dissatisfied</option>
+                    <option value="3">3 - Neutral</option>
+                    <option value="4">4 - Satisfied</option>
+                    <option value="5">5 - Very Satisfied</option>
+                </select>
+                    <p class="error-message" id="satisfactionError">Please select your satisfaction level.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="valuable_aspect">Specify the department where you undertook your internship?</label>
+                    <textarea id="valuable_aspect" name="valuable_aspect" rows="4" placeholder="Describe the most valuable or enjoyable aspect..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" maxlength="200"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="challenges">What were some of the challenges you encountered during the internship, and how were they addressed?</label>
+                    <textarea id="challenges" name="challenges" rows="4" placeholder="Describe any challenges and how they were handled..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" maxlength="200"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="suggestions">What suggestions do you have for improving the internship program in the future?</label>
+                    <textarea id="suggestions" name="suggestions" rows="4" placeholder="Share your suggestions for improvement..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" maxlength="200"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="recommend">Is this internship recommendable?  </label>
+                    <textarea id="recommend" name="recommend" rows="4" placeholder="Explain your recommendation..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" maxlength="200"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Did you feel adequately supported by your supervisor?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="supported_yes" name="supported_supervisor" value="yes" required>
+                        <label for="supported_yes">Yes</label>
+                        <input type="radio" id="supported_no" name="supported_supervisor" value="no">
+                        <label for="supported_no">No</label>
+                    </div>
+                    <p class="error-message" id="supportedSupervisorError">Please select an option.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Were the tasks assigned to you relevant to your learning objectives?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="relevant_tasks_yes" name="relevant_tasks" value="yes" required>
+                        <label for="relevant_tasks_yes">Yes</label>
+                        <input type="radio" id="relevant_tasks_no" name="relevant_tasks" value="no">
+                        <label for="relevant_tasks_no">No</label>
+                    </div>
+                    <p class="error-message" id="relevantTasksError">Please select an option.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Did you have opportunities to collaborate with other team members?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="collaboration_yes" name="collaboration_opportunities" value="yes" required>
+                        <label for="collaboration_yes">Yes</label>
+                        <input type="radio" id="collaboration_no" name="collaboration_opportunities" value="no">
+                        <label for="collaboration_no">No</label>
+                    </div>
+                    <p class="error-message" id="collaborationOpportunitiesError">Please select an option.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Do you believe this internship has prepared you for future career opportunities?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="career_prep_yes" name="career_preparation" value="yes" required>
+                        <label for="career_prep_yes">Yes</label>
+                        <input type="radio" id="career_prep_no" name="career_preparation" value="no">
+                        <label for="career_prep_no">No</label>
+                    </div>
+                    <p class="error-message" id="careerPreparationError">Please select an option.</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Was the duration of the internship appropriate?</label>
+                    <div class="radio-group">
+                        <input type="radio" id="duration_appropriate_yes" name="internship_duration" value="yes" required>
+                        <label for="duration_appropriate_yes">Yes</label>
+                        <input type="radio" id="duration_appropriate_no" name="internship_duration" value="no">
+                        <label for="duration_appropriate_no">No</label>
+                    </div>
+                    <p class="error-message" id="internshipDurationError">Please select an option.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Your Feedback/Comments:</label>
+                    <textarea id="comments" name="comments" rows="6" placeholder="Share your thoughts on the internship experience..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" autocomplete="off"></textarea>
+                </div>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="submit-button">Submit Feedback</button>
+                </div>
+    </center>
+    </form>
+    </div>
+
+    <script>
+        // Function to validate an input field
+        function validateField(inputElement) {
+            const formGroup = inputElement.closest('.form-group');
+            const errorMessage = formGroup ? formGroup.querySelector('.error-message') : null;
+
+            if (!formGroup || !errorMessage) return true; // No error message element, skip validation
+
+            let isValid = true;
+            let message = '';
+
+            if (inputElement.hasAttribute('required') && inputElement.value.trim() === '') {
+                isValid = false;
+                if (inputElement.tagName === 'SELECT') {
+                    message = errorMessage.textContent; // Use the error text already in the HTML
+                }
+                message = inputElement.placeholder.includes('name') ? 'Full Name is required.' :
+                    inputElement.id === 'rating' ? 'Please select an overall rating.' :
+                    inputElement.id === 'satisfaction' ? 'Please select your satisfaction level.' :
+                    'This field is required.';
+            } else if (inputElement.type === 'email') {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(inputElement.value.trim())) {
+                    isValid = false;
+                    message = 'Please enter a valid email address.';
+                }
+            } else if (inputElement.type === 'tel') { // Phone number validation
+                const phonePattern = /^[0-9]{10}$/; // Basic 10-digit validation
+                if (!phonePattern.test(inputElement.value.trim())) {
+                    isValid = false;
+                    message = 'Please enter a valid 10-digit phone number.';
+                }
+            } else if (inputElement.tagName === 'SELECT' && inputElement.hasAttribute('required') && inputElement.value === '') {
+                isValid = false;
+                message = errorMessage.textContent; // Use the specific error message already in HTML
+            } else if (inputElement.type === 'radio' && inputElement.name) {
+                // For radio buttons, check if at least one in the group is checked
+                const radioGroup = document.querySelectorAll(`input[name="${inputElement.name}"]`);
+                const isRadioChecked = Array.from(radioGroup).some(radio => radio.checked);
+                if (inputElement.hasAttribute('required') && !isRadioChecked) {
+                    isValid = false;
+                    message = errorMessage.textContent;
+                } else {
+                    // If a radio button is checked, clear error for the whole group
+                    Array.from(radioGroup).forEach(radio => {
+                        const parentGroup = radio.closest('.form-group');
+                        const errorMsg = parentGroup ? parentGroup.querySelector('.error-message') : null;
+                        if (errorMsg) {
+                            errorMsg.style.display = 'none';
+                            parentGroup.querySelector('input').classList.remove('error-border');
+                        }
+                    });
+                }
+            }
+
+
+            if (!isValid) {
+                inputElement.classList.add('error-border');
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            } else {
+                inputElement.classList.remove('error-border');
+                errorMessage.style.display = 'none';
+            }
+            return isValid;
+        }
+
+        // Add event listeners for validation
+        const form = document.getElementById('feedbackForm');
+        form.setAttribute('novalidate', ''); // Disable browser's default HTML5 validation
+
+        const formElements = form.querySelectorAll('input, textarea, select');
+        formElements.forEach(element => {
+            if (element.type !== 'submit' && element.type !== 'radio') {
+                element.addEventListener('blur', () => validateField(element));
+                element.addEventListener('input', () => validateField(element));
+            }
+        });
+
+        // Special handling for radio groups
+        const radioGroups = document.querySelectorAll('.radio-group input[type="radio"]');
+        radioGroups.forEach(radio => {
+            radio.addEventListener('change', () => {
+                const groupName = radio.name;
+                const groupElements = document.querySelectorAll(`input[name="${groupName}"]`);
+                let isGroupValid = Array.from(groupElements).some(r => r.checked);
+
+                const formGroup = radio.closest('.form-group');
+                const errorMessage = formGroup ? formGroup.querySelector('.error-message') : null;
+
+                if (errorMessage) {
+                    if (isGroupValid) {
+                        errorMessage.style.display = 'none';
+                        // Remove error border from inputs in the group (optional, depends on styling)
+                        Array.from(groupElements).forEach(input => input.classList.remove('error-border'));
+                    } else {
+                        errorMessage.style.display = 'block';
+                        // Add error border to the first input of the group (optional)
+                        groupElements[0].classList.add('error-border');
+                    }
+                }
+            });
+        });
+
+
+        // Main form submission handler
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            let isFormValid = true;
+
+            // Validate all fields on submit
+            formElements.forEach(element => {
+                if (element.type !== 'submit') { // Exclude submit button from validation
+                    // For radio buttons, validate the group once
+                    if (element.type === 'radio' && element.name) {
+                        const radioGroupValidated = form.querySelector(`[name="${element.name}"][required]`);
+                        if (radioGroupValidated) {
+                            if (!validateField(radioGroupValidated)) {
+                                isFormValid = false;
+                            }
+                        }
+                    } else if (!validateField(element)) {
+                        isFormValid = false;
+                    }
+                }
+            });
+
+            if (!isFormValid) {
+                messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                messageText.textContent = 'Please correct the errors in the form.';
+                messageBox.classList.add('show');
+                return; // Stop submission if validation fails
+            }
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('store_new_details.php', {
+                    method: form.method,
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Server response not OK:', response.status, errorText);
+                    messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                    messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                    messageText.textContent = 'Server error: ' + (errorText.substring(0, 100) + '...');
+                    messageBox.classList.add('show');
+                    return; // Removed alert()
+                }
+
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const errorText = await response.text();
+                    console.error('Expected JSON, but received:', contentType, errorText);
+                    messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                    messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                    messageText.textContent = 'Unexpected server response format. Check server logs.';
+                    messageBox.classList.add('show');
+                    return;
+                }
+
+                const result = await response.json();
+
+                if (result.success) {
+                    messageBox.classList.remove('bg-red-100', 'border-red-400', 'text-red-700');
+                    messageBox.classList.add('bg-green-100', 'border-green-400', 'text-green-700');
+                    messageText.textContent = result.message;
+                    form.reset();
+                    // Removed alert()
+
+                    // IMPORTANT: Redirect to the upload page if redirect_url is present
+                    if (result.redirect_url) {
+                        window.location.href = result.redirect_url;
+                    }
+
+                } else {
+                    messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                    messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                    messageText.textContent = result.message;
+                    // Removed alert()
+                }
+                messageBox.classList.add('show');
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                messageText.textContent = 'An error occurred. Please try again.';
+                messageBox.classList.add('show');
+                // Removed alert()
+            }
+        });
+    </script>
+</body>
+
+</html>

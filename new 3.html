@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Internship Files</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            background-image: url('https://psgtech.edu/distinalumni/assets/collegepic.jpeg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: #004170;
+            font-family: "Serif", Georgia;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #334155;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            background-color: #f8fafc;
+        }
+        .form-group input[type="file"]:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        .submit-button {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.85rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+            margin-top: 1.5rem;
+        }
+        .submit-button:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+        }
+        .submit-button:active {
+            transform: translateY(0);
+        }
+        .message-box {
+            background-color: #e0f2fe;
+            color: #0c4a6e;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid #a7d9f7;
+            display: none;
+        }
+        .message-box.show {
+            display: block;
+        }
+        #logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        h1, h3, h4 {
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="uploadForm" action="new 4.php" method="POST" enctype="multipart/form-data">
+        <img src="https://ecampus.psgtech.ac.in/studzone/assets/images/PSG%20INSTITUTION.png" id="logo" alt="PSG Institution Logo">
+        <h1 style="font-size: 2.5em;"><b>PSG INSTITUTIONS</b></h1>
+        <h3 style="font-size: 1.4em; font-weight:bold;">CENTRAL HUMAN RESOURCE</h3>
+        <h4 class="text-2xl font-extrabold text-center text-gray-800 mb-8" style="font-size:24px;"><u>Upload Internship Certificate</u></h4>
+
+        <div id="messageBox" class="message-box" role="alert">
+            <p id="messageText"></p>
+        </div>
+
+        <input type="hidden" id="num" name="num"> <div class="form-group mb-6">
+            <label for="internship_file">Select File to Upload:</label>
+            <input type="file" id="internship_file" name="internship_file" accept=".pdf, .doc, .docx, .zip" required>
+            <p class="text-sm text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX, ZIP. Max file size: 5MB.</p>
+        </div>
+
+        <button type="submit" class="submit-button" onclick="new 1.html">Upload File</button>
+    </form>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const num = urlParams.get('num');
+        if (num) {
+            document.getElementById('num').value = num;
+        } else {
+            // If no phone number, display a message
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+            messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+            messageText.textContent = 'No phone number found. Cannot link file upload to your feedback. Please resubmit feedback.';
+            messageBox.classList.add('show');
+            // Optional: Disable the upload form or redirect back
+            document.getElementById('uploadForm').querySelector('button[type="submit"]').disabled = true;
+            document.getElementById('internship_file').disabled = true;
+        }
+
+        const uploadForm = document.getElementById('uploadForm');
+        const messageBox = document.getElementById('messageBox');
+        const messageText = document.getElementById('messageText');
+
+        uploadForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Basic file input validation
+            const fileInput = document.getElementById('internship_file');
+            if (fileInput.files.length === 0) {
+                messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                messageText.textContent = 'Please select a file to upload.';
+                messageBox.classList.add('show');
+                return;
+            }
+
+            const formData = new FormData(uploadForm);
+
+            try {
+                const response = await fetch('new 4.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json(); // Assuming process_upload.php returns JSON
+
+                if (result.success) {
+                    messageBox.classList.remove('bg-red-100', 'border-red-400', 'text-red-700');
+                    messageBox.classList.add('bg-green-100', 'border-green-400', 'text-green-700');
+                    messageText.textContent = result.message;
+                    uploadForm.reset(); // Clear the file input
+                    window.location.href = 'new 1.html'; // Redirect to new 1.html
+                } else {
+                    messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                    messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                    messageText.textContent = result.message;
+                }
+                messageBox.classList.add('show');
+            } catch (error) {
+                console.error('Error uploading file:', error);
+                messageBox.classList.remove('bg-green-100', 'border-green-400', 'text-green-700');
+                messageBox.classList.add('bg-red-100', 'border-red-400', 'text-red-700');
+                messageText.textContent = 'An error occurred during file upload. Please try again.';
+                messageBox.classList.add('show');
+            }
+        });
+    });
+</script>
+</body>
+</html>
