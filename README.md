@@ -62,7 +62,8 @@ Thank You Page
 <img width="621" height="812" alt="image" src="https://github.com/user-attachments/assets/50c0f429-ed48-48f7-afdf-4be68ce5156f" />
 
 ### Form Data Preview Page
-<img width="607" height="812" alt="image" src="https://github.com/user-attachments/assets/f35134ae-7e2d-4848-a216-6ffc6fcd5329" />
+<img width="592" height="897" alt="image" src="https://github.com/user-attachments/assets/797b9cce-56a8-4506-a35a-836b03def828" />
+
 
 ### Approval Page
 <img width="1740" height="250" alt="image" src="https://github.com/user-attachments/assets/86d6b2ee-066a-4e85-b020-e0249fe0f997" />
@@ -186,6 +187,11 @@ http://localhost/Internship-Module-ManagementSystem/web.html
 
 **Sreenithi**
 - GitHub: [@sreenithi20](https://github.com/sreenithi20)
+
+**Reshmaa**
+- GitHub :[@reshmaa](https://github.com/reshmaa6749-prog)
+  
+  
 - Built during an internship at **PSG Institutions — Central Human Resource**
 
 ---
